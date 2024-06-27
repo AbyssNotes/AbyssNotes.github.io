@@ -33,9 +33,13 @@
         function decrypt() {
             var inputText = document.getElementById('inputText').value;
             var key = document.getElementById('key').value;
-            var decrypted = CryptoJS.AES.decrypt(inputText, key);
-            var decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
-            document.getElementById('outputText').value = decryptedText;
+            try {
+                var decrypted = CryptoJS.AES.decrypt(inputText, key);
+                var decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
+                document.getElementById('outputText').value = decryptedText;
+            } catch (e) {
+                document.getElementById('outputText').value = 'Decryption error: ' + e.message;
+            }
         }
     </script>
 </body>
